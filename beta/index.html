@@ -589,8 +589,8 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
 
   // ---------- tabs ----------
   var TABS = [
-    { id: "p", label: "来日しそう", desc: "来季NPBでプレーする確率の高い順。", role: null },
     { id: "good", label: "活躍しそう", desc: "日本で活躍する確率（野手はOPS .800以上、先発は防御率3.00以下、救援は2.50以下）の高い順。", role: null },
+    { id: "p", label: "来日しそう", desc: "来季NPBでプレーする確率の高い順。", role: null },
     { id: "team", label: "推し球団", desc: "球団を選ぶと、2026年の成績から見た補強ポイントと、そこに合う助っ人候補を出します。", role: null },
     { id: "fav", label: "★お気に入り", desc: "★を付けた選手（この端末に保存されます）。来日確率の高い順。", role: null }
   ];
@@ -598,7 +598,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
   var FAV = {};
   try { (JSON.parse(localStorage.getItem("raiyoho_fav") || "[]") || []).forEach(function (i) { FAV[i] = 1; }); } catch (e) { /* storage unavailable */ }
   function saveFav() { try { localStorage.setItem("raiyoho_fav", JSON.stringify(Object.keys(FAV).map(Number))); } catch (e) { /* ignore */ } }
-  var state = { tab: "p", q: "", role: "all", pos: "", roster: "", lvl: "", nat: "", shown: 40, sel: null, dtab: "proj", pushed: false };
+  var state = { tab: "good", q: "", role: "all", pos: "", roster: "", lvl: "", nat: "", shown: 40, sel: null, dtab: "proj", pushed: false };
   try { var sv = JSON.parse(localStorage.getItem("raiyoho2") || "null"); if (sv && (sv.tab === "p" || sv.tab === "good" || sv.tab === "fav" || sv.tab === "team")) state.tab = sv.tab; if (sv && sv.team) state.team = sv.team; } catch (e) { /* storage unavailable */ }
   function persist() { try { localStorage.setItem("raiyoho2", JSON.stringify({ tab: state.tab, team: state.team })); } catch (e) { /* ignore */ } }
   function tabCfg() { for (var i = 0; i < TABS.length; i++) if (TABS[i].id === state.tab) return TABS[i]; return TABS[0]; }
