@@ -1,5 +1,5 @@
 // 助っ人レーダー service worker: works offline, picks up new data on the next visit.
-const CACHE = "raiyoho-20261103h-beta";
+const CACHE = "raiyoho-20261103i-beta";
 const CORE = ["./", "./index.html", "./detail.2d817845b9.json", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -13,6 +13,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   // the page itself: network first so new data shows up, cached copy when offline
   const base = new URL("./", self.location).pathname;
+  if (url.pathname.endsWith("/rumors.json")) return;   // news list: always from the network
   if (req.mode === "navigate" && url.pathname !== base && url.pathname !== base + "index.html") return;  // e.g. the /beta/ sub-site
   if (url.origin === location.origin && !url.pathname.startsWith(base)) return;
   if (url.origin === location.origin && url.pathname.slice(base.length).indexOf("/") >= 0 && !url.pathname.startsWith(base + "icons/")) return;
