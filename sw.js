@@ -1,5 +1,5 @@
 // 助っ人来日予報 service worker: works offline, picks up new data on the next visit.
-const CACHE = "raiyoho-20261103c";
+const CACHE = "raiyoho-20261103d";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -13,7 +13,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   // the page itself: network first so new data shows up, cached copy when offline
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).then((res) => {
+    e.respondWith(fetch(req, { cache: "no-store" }).then((res) => {
       const copy = res.clone(); caches.open(CACHE).then((c) => c.put("./index.html", copy)); return res;
     }).catch(() => caches.match("./index.html")));
     return;

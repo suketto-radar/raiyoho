@@ -1093,7 +1093,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
   var box = document.getElementById("install"), go = document.getElementById("install-go");
   var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
   function show() { box.hidden = false; }
-  function hide(days) { box.hidden = true; try { localStorage.setItem(KEY, String(Date.now() + days * 864e5)); } catch (e) {} }
+  function hide(days) { box.hidden = true; box.style.display = "none"; try { localStorage.setItem(KEY, String(Date.now() + days * 864e5)); } catch (e) {} }
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; setTimeout(show, 6000); });
   if (ios) {
     document.getElementById("install-text").innerHTML = "<b>ホーム画面に追加</b>下の共有ボタン（□に↑）→「ホーム画面に追加」で、アプリのように使えます。";
