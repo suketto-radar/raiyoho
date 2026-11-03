@@ -1,5 +1,5 @@
 // 助っ人レーダー service worker: works offline, picks up new data on the next visit.
-const CACHE = "raiyoho-20261103g";
+const CACHE = "raiyoho-20261103h";
 const CORE = ["./", "./index.html", "./detail.2d817845b9.json", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));

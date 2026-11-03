@@ -27,6 +27,8 @@
 <meta name="twitter:image" content="https://suketto-radar.github.io/raiyoho/beta/og.png">
 <style>html,body{margin:0}body{background:#EDF0F5}@media (prefers-color-scheme:dark){body{background:#0C121D}}</style>
 <script>window.__APP__ = true; window.__DETAIL_URL__ = "detail.2d817845b9.json";</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-29HDCYES7S"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "G-29HDCYES7S", { site_variant: "beta" });</script>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -543,7 +545,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
     <li>参考文献：<a href="https://blogs.fangraphs.com/creating-a-projection-for-munetaka-murakami" target="_blank" rel="noopener">FanGraphs（NPBとMLBの換算）</a>、<a href="https://ir.kagoshima-u.ac.jp/record/11639/files/27-40.pdf" target="_blank" rel="noopener">鹿児島大学（外国人野手の成績と年俸の分析）</a></li>
     <li>2026年途中の移籍報道：<a href="https://www.mlbtraderumors.com/nippon-professional-baseball" target="_blank" rel="noopener">MLB Trade Rumors</a>、<a href="https://kumanichi.com/articles/2038656" target="_blank" rel="noopener">熊本日日新聞（ウォードの中日移籍）</a></li>
   </ul>
-  <p>予想は統計モデルによる推定で、球団の獲得方針や契約情報は含みません。</p>
+  <p>予想は統計モデルによる推定で、球団の獲得方針や契約情報は含みません。</p><p>このサイトは、よく見られている選手や機能を知るためにGoogleアナリティクスを使っています。名前やメールアドレスなど、個人を特定する情報は集めていません。</p>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1023,6 +1025,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
   document.getElementById("copy").addEventListener("click", function () {
     var p = byId[state.sel]; if (!p) return;
     var text = postText(p);
+    track("share/" + p.n);
     if (APP && navigator.share) {
       navigator.share({ title: p.k + "｜助っ人レーダー2027", text: text.replace("\n" + shareURL(p), ""), url: shareURL(p) }).catch(function () { /* cancelled */ });
       return;
@@ -1039,7 +1042,15 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
 
   // ---------- analytics (GoatCounter, only when a code is configured) ----------
   function track(path) {
-    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: path, title: path, event: true }); } catch (e) { /* ignore */ }
+    try {
+      if (window.gtag) {
+        var i = path.indexOf("/"), kind = i < 0 ? path : path.slice(0, i), what = i < 0 ? "" : path.slice(i + 1);
+        var EV = { player: ["view_player", "player"], team: ["select_team", "team"], "make-image": ["make_image", "player"], "share-image": ["share_image", "player"], filter: ["use_filter", "filter"], share: ["share_text", "player"], fav: ["add_favorite", "player"] };
+        var e = EV[kind] || [kind.replace(/-/g, "_"), "label"], prm = {}; prm[e[1]] = what;
+        window.gtag("event", e[0], prm);
+      }
+      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: path, title: path, event: true });
+    } catch (e) { /* ignore */ }
   }
   // ---------- share image ----------
   var GRADE_COL = { S: "#C0342B", A: "#D2602A", B: "#B07B0E", C: "#2F8150", D: "#237683", E: "#3359A0", F: "#66698A", G: "#8F96A3" };
@@ -1137,7 +1148,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
   }
   document.getElementById("fav").addEventListener("click", function () {
     var id = state.sel; if (id == null) return;
-    if (FAV[id]) { delete FAV[id]; toast("お気に入りから外しました"); } else { FAV[id] = 1; toast("★ お気に入りに追加しました"); }
+    if (FAV[id]) { delete FAV[id]; toast("お気に入りから外しました"); } else { FAV[id] = 1; toast("★ お気に入りに追加しました"); track("fav/" + byId[id].n); }
     saveFav(); paintFav(); renderList(); markSelected();
   });
   if (APP && navigator.share) document.getElementById("copy").lastChild.textContent = "シェア";
