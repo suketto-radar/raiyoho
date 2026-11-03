@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>助っ人来日予報 2027｜MLB・3A全選手の来日確率と日本での成績予想</title>
+<title>助っ人レーダー 2027｜MLB・3A全選手の来日確率と日本での成績予想</title>
 <meta name="description" content="2026年にメジャーと3Aでプレーした2,066人について、来季日本に来る確率と、来日したら何本打つか・防御率はどうなるかをデータで予想。気になる選手を★でチェック。">
 <meta name="theme-color" content="#EDF0F5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0C121D" media="(prefers-color-scheme: dark)">
@@ -12,17 +12,17 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="来日予報">
+<meta name="apple-mobile-web-app-title" content="助っ人レーダー">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="助っ人来日予報">
-<meta property="og:title" content="助っ人来日予報 2027">
+<meta property="og:site_name" content="助っ人レーダー">
+<meta property="og:title" content="助っ人レーダー 2027">
 <meta property="og:description" content="2026年にメジャーと3Aでプレーした2,066人について、来季日本に来る確率と、来日したら何本打つか・防御率はどうなるかをデータで予想。気になる選手を★でチェック。">
 <meta property="og:image" content="https://negi0826.github.io/raiyoho/beta/og.png">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://negi0826.github.io/raiyoho/beta/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="助っ人来日予報 2027">
+<meta name="twitter:title" content="助っ人レーダー 2027">
 <meta name="twitter:description" content="2026年にメジャーと3Aでプレーした2,066人について、来季日本に来る確率と、来日したら何本打つか・防御率はどうなるかをデータで予想。気になる選手を★でチェック。">
 <meta name="twitter:image" content="https://negi0826.github.io/raiyoho/beta/og.png">
 <style>html,body{margin:0}body{background:#EDF0F5}@media (prefers-color-scheme:dark){body{background:#0C121D}}</style>
@@ -388,14 +388,14 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
 
 <header class="appbar">
   <div class="wrap appbar-in">
-    <a class="brand" href="#top"><i aria-hidden="true"></i>助っ人来日予報 <b>2027</b><span class="beta">試作版</span></a>
+    <a class="brand" href="#top"><i aria-hidden="true"></i>助っ人レーダー <b>2027</b><span class="beta">試作版</span></a>
     <a class="about-link" href="#about">しくみ・検証</a>
   </div>
 </header>
 
 <section class="wrap hero" id="top">
   <div class="eyebrow"><span class="flight">MLB → NPB</span><span>2027 SEASON FORECAST</span></div>
-  <h1>助っ人来日予報 <span class="yr">2027</span></h1>
+  <h1>助っ人レーダー <span class="yr">2027</span></h1>
   <p class="lede">2026年にメジャーか3A（マイナー最上位）でプレーした全選手について、来季に日本でプレーする確率と、来日した場合の成績・能力を予想しました。過去に来日した外国人選手のデータで学習・検証したモデルです。</p>
   <p class="upd" id="upd"></p>
   <div class="facts" id="facts"></div>
@@ -983,7 +983,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
 
   // ---------- copy text for social posts ----------
   function postText(p) {
-    var q = p.pr, lines = ["【助っ人来日予報2027】", p.k + "（" + [teamOf(p), POS[p.po] || p.po, p.a ? p.a + "歳" : ""].filter(Boolean).join("・") + "）"];
+    var q = p.pr, lines = ["【助っ人レーダー2027】", p.k + "（" + [teamOf(p), POS[p.po] || p.po, p.a ? p.a + "歳" : ""].filter(Boolean).join("・") + "）"];
     lines.push(p.sg ? "▶ " + p.sg + "（" + p.sgt + "）" : "▶ 来日確率 " + pct(p.p));
     if (p.r === "B") lines.push("▶ 日本での予想（600打席）：打率" + r3(q.AVG) + "・" + q.HR + "本塁打・" + q.RBI + "打点・" + q.SB + "盗塁（OPS " + r3(q.OPS) + "）");
     else if (q.role === "先発") lines.push("▶ 日本での予想（先発150回）：" + q.W + "勝" + q.L + "敗・防御率" + f2(q.ERA) + "・" + q.SO + "奪三振");
@@ -993,7 +993,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
       if (p.r === "B" && p.g.tr) ab.unshift("弾道" + p.g.tr);
       lines.push("▶ 能力：" + ab.join(" "));
     }
-    lines.push("#助っ人来日予報 #新外国人");
+    lines.push("#助っ人レーダー #新外国人");
     if (APP) lines.push(shareURL(p));
     return lines.join("\n");
   }
@@ -1007,7 +1007,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
     var p = byId[state.sel]; if (!p) return;
     var text = postText(p);
     if (APP && navigator.share) {
-      navigator.share({ title: p.k + "｜助っ人来日予報2027", text: text.replace("\n" + shareURL(p), ""), url: shareURL(p) }).catch(function () { /* cancelled */ });
+      navigator.share({ title: p.k + "｜助っ人レーダー2027", text: text.replace("\n" + shareURL(p), ""), url: shareURL(p) }).catch(function () { /* cancelled */ });
       return;
     }
     var fallback = function () {
@@ -1043,7 +1043,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
     x.fillStyle = "#fff"; x.fillRect(30, 30, W - 60, H - 60);
     x.fillStyle = "#EDF0F5"; x.fillRect(46, 46, W - 92, H - 92);
     var L = 96;
-    x.fillStyle = "#C0342B"; x.font = "700 30px " + body; x.fillText("助っ人来日予報 2027", L, 132);
+    x.fillStyle = "#C0342B"; x.font = "700 30px " + body; x.fillText("助っ人レーダー 2027", L, 132);
     x.fillStyle = "#4A576C"; x.font = "700 30px " + body; x.fillText(teamOf(p) + "  →  NPB", L, 182);
     x.fillStyle = "#0F1A2C"; x.font = "96px " + disp;
     var nl = wrapText(x, p.k, W - 2 * L), y = 300;
@@ -1083,7 +1083,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
       });
     }
     x.fillStyle = "#7A8599"; x.font = "700 28px " + body; x.textAlign = "center";
-    x.fillText("negi0826.github.io/raiyoho", W / 2, H - 80); x.textAlign = "left";
+    x.fillText((location.host + location.pathname).replace(/\/(index\.html)?$/, "").replace(/\/beta$/, ""), W / 2, H - 80); x.textAlign = "left";
     return c;
   }
   function closeShot() { var s = document.getElementById("shot"); if (s) s.remove(); }
