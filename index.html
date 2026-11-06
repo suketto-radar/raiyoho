@@ -96,6 +96,8 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .brand { font-family: var(--f-display); font-size: 18px; color: var(--ink); text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
 .brand i { display: inline-block; width: 22px; height: 14px; border-radius: 3px; background: repeating-linear-gradient(-45deg, var(--red) 0 4px, var(--card) 4px 6px, var(--blue) 6px 10px, var(--card) 10px 12px); }
 .brand b { color: var(--red); font-weight: 400; }
+.xlink { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; margin-top: 12px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; font-size: 13.5px; max-width: 100%; }
+.xlink b { color: var(--blue); }
 .about-link { font-size: 14px; font-weight: 700; text-decoration: none; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); white-space: nowrap; }
 
 /* ---------- hero ---------- */
@@ -419,6 +421,7 @@ td.n, th.n { text-align: right; font-family: var(--f-mono); font-variant-numeric
   <div class="eyebrow"><span class="flight">MLB → NPB</span><span>2027 SEASON FORECAST</span></div>
   <h1>助っ人レーダー <span class="yr">2027</span></h1>
   <p class="lede">2026年にメジャーか3A（マイナー最上位）でプレーした全選手について、来季に日本でプレーする確率と、来日した場合の成績・能力を予想しました。過去に来日した外国人選手のデータで学習・検証したモデルです。</p>
+  <a class="xlink" href="https://suketto-radar.github.io/raiyoho/mlb/">逆に、日本人選手がメジャーに行ったら？ <b>メジャー挑戦レーダー →</b></a>
   <p class="upd" id="upd"></p>
   <div class="facts" id="facts"></div>
   <div class="signed" id="signed"></div>
